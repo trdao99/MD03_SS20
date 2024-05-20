@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <h1>INSERT Product</h1>
+    <form th:action="@{/updatePro}" th:object="${product}" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+
+            <label for="id" class="form-label"> ID</label>
+            <input th:field="*{id}" class="form-control" id="id" readonly/>
+            <p class="text-danger" th:errors="*{id}">ID Error</p>
+        </div>
+        <div class="mb-3">
+            <label class="form-label"> price</label>
+            <input th:field="*{price}" class="form-control" aria-describedby="fullNameHelp"/>
+            <p class="text-danger" th:errors="*{price}">price Error</p>
+            <div class="mb-3">
+                <div class="mb-3">
+                    <label class="form-label"> stock</label>
+                    <input th:field="*{stock}" class="form-control" aria-describedby="fullNameHelp"/>
+                    <p class="text-danger" th:errors="*{stock}">stock Error</p></div>
+                <div class="mb-3">
+                    <label class="form-label">Category</label>
+                    <select th:field="*{cate}" class="form-control">
+                        <option th:each="c : ${category}" th:value="${c.id}" th:text="${c.name}"></option>
+                    </select>
+                    <p class="text-danger" th:errors="*{cate}">cate Error</p>
+                </div>
+                <div class="mb-3">
+                    <img width="100" height="100" th:src="@{'/images/'+${product.ingName}}" alt="">
+                    <label class="form-label"> img</label>
+                    <input th:field="*{ingName}" class="form-control"  aria-describedby="fullNameHelp" type="file"  th:value="${images}"/>
+                    <p class="text-danger" th:errors="*{ingName}">Img Error</p>
+                </div>
+                <div class="mb-3">
+                    <label for="fullName" class="form-label"> Name</label>
+                    <input th:field="*{name}" class="form-control" id="fullName" aria-describedby="fullNameHelp"/>
+                    <p class="text-danger" th:errors="*{name}">Name Error</p>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Status</label><br>
+                    <input th:field="*{status}" type="radio" value="true"/> Hoat dong
+                    <input th:field="*{status}" type="radio" value="false"/> Khong hoat dong <br>
+                    <p class="text-danger" th:errors="*{status}">status Error</p>
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-primary">Insert</button>
+                    <button type="reset" class="btn btn-secondary">Clear</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+</html>
